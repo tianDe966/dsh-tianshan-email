@@ -1,0 +1,17 @@
+dsh-tianshan-email
+Copyright (c) 2026 tianshan123
+Licensed under the MIT License (see LICENSE).
+
+This product's design draws on lessons from the community plugin
+dsh-email-notify <https://github.com/MCviseron/dsh-email-notify>
+(Apache License 2.0, Copyright (c) MCviseron), in particular:
+
+  - declaring the auth code as a schemastery field with `.role('secret')` so the
+    settings service redacts it before it reaches the browser;
+  - letting the profile entry Config be the settings namespace instead of
+    registering a second one;
+  - keeping SMTP credentials out of logs, error messages and API responses.
+
+No source code was copied from that project: this plugin is an independent,
+smaller implementation written for its own requirements, and it does not ship
+any of dsh-email-notify's notification triggers, templates or client bundle.

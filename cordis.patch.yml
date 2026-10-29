@@ -1,0 +1,7 @@
+# dsh-tianshan-email bundle patch: inserts the mail plugin row into the web
+# profile roster. The Host half owns the SMTP configuration (declared as this
+# plugin's settings namespace), registers the agent-facing `send_mail` tool and
+# lets the settings service render the form from the schema.
+- insert:
+    - id: tianshan-email
+      name: 'dsh-tianshan-email'
