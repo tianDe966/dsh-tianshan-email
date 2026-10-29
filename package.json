@@ -1,15 +1,18 @@
 {
   "name": "dsh-tianshan-email",
-  "version": "0.1.0",
-  "description": "DeepSeek Harness plugin: a self-hosted SMTP mail plugin with a schema-driven settings page (SMTP server/port/TLS/sender/auth-code/recipient, auth code declared as a secret field and redacted in the browser) and an agent-facing send_mail tool.",
+  "version": "0.2.0",
+  "description": "DeepSeek Harness plugin: a self-hosted SMTP mail plugin with a settings card of its own (SMTP server/port/TLS/sender/auth-code/recipient plus a test-mail button, auth code declared as a secret field and redacted in the browser) and an agent-facing send_mail tool.",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
     ".": "./lib/index.js",
+    "./client": "./lib/client.js",
     "./package.json": "./package.json"
   },
   "files": [
     "lib/",
+    "src/",
+    "build.mjs",
     "cordis.patch.yml",
     "README.md",
     "LICENSE",
@@ -19,10 +22,22 @@
   "dsh": {
     "bundle": {
       "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-settings"
+      ],
+      "platform": "web"
     }
   },
   "engines": {
     "node": ">=20"
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node --test",
+    "test:sandbox": "node --test --test-isolation=none",
+    "prepublishOnly": "node build.mjs && npm run test:sandbox"
   },
   "keywords": [
     "dsh",
@@ -38,9 +53,7 @@
     "@deepseek-ai/schemastery": "^3.18.5",
     "nodemailer": "^6.9.13"
   },
-  "scripts": {
-    "test": "node --test",
-    "test:sandbox": "node --test --test-isolation=none",
-    "prepublishOnly": "npm run test:sandbox"
+  "devDependencies": {
+    "esbuild": "^0.24.0"
   }
 }

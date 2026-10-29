@@ -4,8 +4,8 @@
 
 ## 装什么
 
-- **设置页「邮件」**：SMTP 服务器 / 端口 / SSL / 发件邮箱 / **邮箱授权码（secret）** / 发件人地址 / 默认收件人。
-  页面由 DSH 直接按 schema 渲染，没有手写前端，也没有额外构建步骤。
+- **设置页「tianshan邮件」**：SMTP 服务器 / 端口 / 直连 SSL / 发件邮箱 / **邮箱授权码（secret）** / 发件人地址 / 默认收件人，外加一个「发送测试邮件」按钮，点一下就知道配置通不通。
+  这张卡片属于插件自己（`src/client/`，esbuild 打成 `lib/client.js`），因为 DSH 目前不会给第三方 namespace 自动生成设置页。
 - **工具 `send_mail`**：`subject` + `text` 必填，`to` 可覆盖默认收件人，`html` 可选。
   配置不全时返回 `status=failed` 并说明缺哪几项，不抛异常；授权码不会出现在任何返回值里。
 
@@ -17,7 +17,7 @@ npm install dsh-tianshan-email
 dsh plugin --profile web add link:D:/path/to/dsh-tianshan-email
 ```
 
-装完重启 DSH，设置侧边栏会出现「邮件」页。
+装完重启 DSH，设置侧边栏会出现「tianshan邮件」页。
 
 ## 配置
 

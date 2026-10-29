@@ -2,6 +2,19 @@
 
 本文件记录 `dsh-tianshan-email` 的对外变更。格式参考 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)。
 
+## [0.2.0] - 2026-10-29
+
+### Added
+
+- **自有设置卡片「tianshan邮件」**：注册在设置侧边栏，含 SMTP 表单、启用开关、直连 SSL 开关、授权码密码框（留空表示不修改）与「发送测试邮件」按钮。
+- 浏览器侧通过插件的 loopback 路由读写配置：`/api/dsh-tianshan-email/settings/describe`、`/settings/mutate`、`/test`，三者都要求同源 loopback（socket 地址 + Host + Origin 三重校验）。
+- 卡片以 esbuild 打包为 `lib/client.js`，格式与 DSH 的 `window.__ModuleLoader__` 加载器一致；React 走宿主提供的外部依赖。
+
+### Fixed
+
+- `apply()` 不再依赖模块级 `inject` 导出（该加载器不认），改为 `ctx.inject(['tools','settings'])` 与 `ctx.inject(['settings','webServer'])` 两段注入，headless profile 也仍能拿到工具。
+- 配置读取改为经 `settings.describe()` 现读并逐字段解包——此前 `apply` 收到的字段是包装对象，导致已填好的配置被判定为缺失。
+
 ## [0.1.0] - 2026-10-29
 
 ### Added
