@@ -1,7 +1,7 @@
 {
   "name": "dsh-tianshan-email",
-  "version": "0.2.0",
-  "description": "DeepSeek Harness plugin: a self-hosted SMTP mail plugin with a settings card of its own (SMTP server/port/TLS/sender/auth-code/recipient plus a test-mail button, auth code declared as a secret field and redacted in the browser) and an agent-facing send_mail tool.",
+  "version": "0.2.1",
+  "description": "DeepSeek Harness plugin: a self-hosted SMTP mail plugin. Gives the agent a send_mail tool so it can report progress and deliver results to your inbox while you are away, plus a settings card of its own (SMTP server/port/TLS/sender/auth-code/recipient and a test-mail button; the auth code is a secret field, redacted in the browser).",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
